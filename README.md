@@ -1,5 +1,5 @@
 
-# conway
+# Conway's Game Of Life
 
 Conway's game of life implemented in Clojure
 
