@@ -1,4 +1,4 @@
-(ns conway.corev
+(ns conway.core
   (:require [quil.core :as q])
   (:require [quil.middleware :as m]))
 
