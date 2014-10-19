@@ -3,6 +3,7 @@
   (:require [quil.middleware :as m]))
 
 (defn flip [state]
+  "Flips the state of a cell."
   (if (= :off state)
     :on
     :off))
@@ -17,9 +18,12 @@
                (update-in [9 9] flip)))
 
 (defn alive? [cell]
+  "Tests if the cell is alive"
   (= cell :on))
 
 (defn tick [board]
+  "Updates the board according to the game's rules.
+Performs only one iteration"
   (let [xcoord [-1 -1 -1  0 0  1 1 1]
         ycoord [-1  0  1 -1 1 -1 0 1]]
     (mapv vec
@@ -47,26 +51,31 @@
                                     :else :off)))))))
 
 (defn live-cells [board]
+  "Returns a list of coordinates of the live cells on the board"
   (for [i (range (count board))
         j (range (count board))
         :when (alive? (get-in board [i j]))]
     [i j]))
 
 (defn setup []
+  "Sets the config for quil, and returns the initial state of the board"
   (q/smooth)
   (q/frame-rate 3)                 
   board)
 
 (defn update [board]
+  "Update function used by quil to update the board every frame"
   (tick board))
 
 (defn draw [board]
+  "Drawing function used by quil"
   (q/background 255)
   (q/fill 0)
   (doseq [[x y] (live-cells board)]
     (q/rect (* x 17) (* 17 y) 17 17)))
 
 (q/defsketch example
+  "Quil sketch demo"
   :middleware [m/fun-mode]
   :setup setup
   :draw draw
@@ -74,4 +83,5 @@
   :size [289 289])
 
 (defn -main []
+  "Main function"
   example)
