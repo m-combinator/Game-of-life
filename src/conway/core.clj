@@ -8,6 +8,7 @@
     :on
     :off))
 
+;; Test board
 (def board (-> (vec (repeat 17 (vec (repeat 17 :off))))
                (update-in [5 7] flip)
                (update-in [5 8] flip)
