@@ -75,8 +75,8 @@ Performs only one iteration"
   (doseq [[x y] (live-cells board)]
     (q/rect (* x 17) (* 17 y) 17 17)))
 
+;;quil demo
 (q/defsketch example
-  "Quil sketch demo"
   :middleware [m/fun-mode]
   :setup setup
   :draw draw
